@@ -354,7 +354,12 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/Player.cs"
+"Assets/Scripts/Player/FollowCam.cs"
+"Assets/Scripts/Player/Player.cs"
+"Assets/Scripts/Popup/PopupScript.cs"
+"Assets/Scripts/Popup/UnActive.cs"
+"Assets/Scripts/Scene/SceneChange.cs"
+"Assets/Scripts/Store/Skill_Swipe.cs"
 -langversion:9.0
 
 /deterministic
