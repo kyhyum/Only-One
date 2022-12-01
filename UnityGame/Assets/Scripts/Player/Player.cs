@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     Rigidbody rigid;
     public Collider col;
+    public bl_Joystick js;
+    public Button btn;
     public float speed;
     public float hp;
+    public bool isAttack = false;
     private bool isDie;
     Vector3 lookDirection;
     Animator animator;
+    public Camera playerCamera;
 
     private void Start()
     {
@@ -22,7 +27,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Die();
-        if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && !isDie)
+        if ((js.Horizontal != 0 || js.Vertical != 0) && !isDie)
         {
             Move();
         }
@@ -30,14 +35,15 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("IsMove", false);
         }
-        if (Input.GetMouseButtonDown(0) && !isDie)
+        //공격방식 수정
+        btn.onClick.AddListener(() =>
         {
-            Attack();
-        }
+                Attack();
+        });
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Monster")
+        if (collision.gameObject.tag == "Monster" && !isDie)
         {
             animator.SetTrigger("IsHit");
             hp -= 10f;
@@ -46,43 +52,43 @@ public class Player : MonoBehaviour
     }
     public void Move()
     {
-        float xx = Input.GetAxisRaw("Vertical");
-        float zz = Input.GetAxisRaw("Horizontal");
-        lookDirection = xx * Vector3.forward + zz * Vector3.right;
-
+        Vector3 dir = new Vector3(js.Horizontal, 0, js.Vertical);
+        float vecSize = Mathf.Abs(dir.x) + Mathf.Abs(dir.z);
         animator.SetBool("IsMove", true);
-        if (Input.GetKey(KeyCode.LeftShift))
+
+        if (vecSize >= 5f)
         {
             animator.SetLayerWeight(1, 1);
             animator.SetBool("IsRun", true);
-            speed = 7f;
+            speed = 1f;
         }
         else
         {
             animator.SetBool("IsRun", false);
-            speed = 5f;
+            speed = 1f;
         }
-        transform.rotation = Quaternion.LookRotation(lookDirection);
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        Vector3 moveVector =  dir * speed * Time.deltaTime;
+        Quaternion v3Rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+        moveVector = v3Rotation * moveVector;
+        transform.rotation = Quaternion.LookRotation(moveVector);
+        transform.position = transform.position + moveVector;
     }
 
     public void Attack()
     {
         animator.SetLayerWeight(1, 1);
-        animator.SetTrigger("IsAttack");
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("NormalAttack01_SwordShield") &&
-            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f &&
-            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f)
+        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack01_SwordShield"))
+            animator.SetTrigger("IsAttack");
+       /* else
         {
-            animator.SetTrigger("IsAttack2");
-        }
-        else
-            animator.SetTrigger("NotAttack");
+            //2타공격
+                animator.SetTrigger("isAttack2");
+        }*/
     }
 
     public void Die()
     {
-        if(hp <= 0)
+        if (hp <= 0)
         {
             isDie = true;
             rigid.velocity = Vector3.zero;
