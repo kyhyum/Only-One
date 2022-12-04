@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public GameObject bullet;
     public bool isChase;
     public bool isAttack;
+    public GameObject player;
 
     Rigidbody rigid;
     SphereCollider sphereCollider;
@@ -96,12 +97,16 @@ public class Enemy : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        // 몬스터가 데미지를 받는 부분
-        // StartCoroutine(OnDamage());
+        if (other.CompareTag("sword"))
+        {
+            if (player.GetComponent<Player>().attacked)
+                Destroy(gameObject);
+        }
     }
 
     IEnumerator OnDamage() {
         // 몬스터가 데미지를 받는 계산 부분
         yield return null;
     }
+   
 }
