@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("IsMove", false);
         }
-        //°ø°Ý¹æ½Ä ¼öÁ¤
+        //ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         btn.onClick.AddListener(() =>
         {
             if(!isDie)
@@ -60,6 +60,18 @@ public class Player : MonoBehaviour
             
         }
     }
+
+    void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.tag == "Monster" && !isDie)
+        {
+            animator.SetTrigger("IsHit");
+            Vector3 reactVec = transform.position - collider.transform.position;
+            hp_down();
+            OnDamaged(reactVec);
+            
+        }
+    }
+
     public void Move()
     {
             Vector3 dir = new Vector3(js.Horizontal, 0, js.Vertical);
@@ -92,7 +104,7 @@ public class Player : MonoBehaviour
             animator.SetTrigger("IsAttack");
        /* else
         {
-            //2Å¸°ø°Ý
+            //2Å¸ï¿½ï¿½ï¿½ï¿½
                 animator.SetTrigger("isAttack2");
         }*/
     }
@@ -124,7 +136,7 @@ public class Player : MonoBehaviour
     public void hp_down()
     {
         Hp -= 1;
-        Hp = Mathf.Clamp(Hp, 0, maxHp);
+        Hp = Mathf.Clamp(Hp, 1, maxHp);
         for (int i = 0; i < maxHp; i++)
             Heart[i].sprite = Back;
 
