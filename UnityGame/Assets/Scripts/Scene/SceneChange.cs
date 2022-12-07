@@ -10,6 +10,9 @@ public class SceneChange : MonoBehaviour
         switch (num)
         {
             case 0:
+                SceneManager.LoadScene("MainMenu");
+                break;
+            case 1:
                 SceneManager.LoadScene("GameScene");
                 break;
         }

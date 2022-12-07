@@ -44,15 +44,10 @@ public class Player : MonoBehaviour
         Die();
         if (((Mathf.Abs(js.Horizontal)) > 0.01 || (Mathf.Abs(js.Vertical)) > 0.01) && !isDie && !ishit)
         {
-            Debug.Log(js.Horizontal);
-            Debug.Log(js.Vertical);
             Move();
         }else{
-            Debug.Log("끝");
             animator.SetBool("IsMove", false);
         }
-        Debug.Log(js.Horizontal);
-        Debug.Log(js.Vertical);
         //공격방식 수정
         btn.onClick.AddListener(() =>
         {

@@ -5,24 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class PopupScript : MonoBehaviour
 {
-
+    public GameObject gameobject;
     public void PopupActive()
     {
         Time.timeScale = 0;
-        gameObject.SetActive(true);
+        gameobject.SetActive(true);
     }
 
     public void PopupUnActive()
     {
         Time.timeScale = 1;
-        gameObject.SetActive(false);
+        gameobject.SetActive(false);
     }
     public void Retry()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     public void Mainmenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
