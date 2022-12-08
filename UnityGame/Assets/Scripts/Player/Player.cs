@@ -40,58 +40,73 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-   
+
         Die();
         if (((Mathf.Abs(js.Horizontal)) > 0.01 || (Mathf.Abs(js.Vertical)) > 0.01) && !isDie && !ishit)
         {
+            //Debug.Log(js.Horizontal);
+            //Debug.Log(js.Vertical);
             Move();
-        }else{
+        }
+        else
+        {
+            //Debug.Log("끝");
             animator.SetBool("IsMove", false);
         }
+        //Debug.Log(js.Horizontal);
+        //Debug.Log(js.Vertical);
         //공격방식 수정
         btn.onClick.AddListener(() =>
         {
-            if(!isDie)
+            if (!isDie)
                 StartCoroutine(Attack());
         });
+        /*if(transform.position.y <= -1)
+        {
+            gameObject.layer = 9;
+        }*/
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Monster" && !isDie && !ishit && gameObject.layer == 6)
+        if ((collision.gameObject.tag == "Monster") && !isDie && !ishit && gameObject.layer == 6)
         {
             animator.SetTrigger("IsHit");
             Vector3 reactVec = transform.position - collision.transform.position;
             hp_down();
             OnDamaged(reactVec);
-            
+        }
+        if (collision.gameObject.tag == "Lava")
+        {
+            while (Hp > 0)
+                hp_down();
         }
     }
     public void Move()
     {
-            Vector3 dir = new Vector3(js.Horizontal, 0, js.Vertical);
-            float vecSize = Mathf.Abs(dir.x) + Mathf.Abs(dir.z);
-            animator.SetBool("IsMove", true);
+        Vector3 dir = new Vector3(js.Horizontal, 0, js.Vertical);
+        float vecSize = Mathf.Abs(dir.x) + Mathf.Abs(dir.z);
+        animator.SetBool("IsMove", true);
 
-            if (vecSize >= 5f)
-            {
-                animator.SetLayerWeight(1, 1);
-                animator.SetBool("IsRun", true);
-                speed = 1f;
-            }
-            else
-            {
-                animator.SetBool("IsRun", false);
-                speed = 1f;
-            }
-            Vector3 moveVector = dir * speed * Time.deltaTime;
-            Quaternion v3Rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
-            moveVector = v3Rotation * moveVector;
+        if (vecSize >= 5f)
+        {
+            animator.SetLayerWeight(1, 1);
+            animator.SetBool("IsRun", true);
+            speed = 1f;
+        }
+        else
+        {
+            animator.SetBool("IsRun", false);
+            speed = 1f;
+        }
+        Vector3 moveVector = dir * speed * Time.deltaTime;
+        Quaternion v3Rotation = Quaternion.Euler(0f, playerCamera.transform.eulerAngles.y, 0f);
+        moveVector = v3Rotation * moveVector;
         if (moveVector != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(moveVector);
             transform.position = transform.position + moveVector;
         }
-        
+
     }
 
     IEnumerator Attack()
@@ -138,16 +153,19 @@ public class Player : MonoBehaviour
 
     public void hp_down()
     {
-        Hp -= 1;
-        Hp = Mathf.Clamp(Hp, 0, maxHp);
-        for (int i = 0; i < maxHp; i++)
-            Heart[i].sprite = Back;
+        if (Hp > 0)
+        {
+            Hp -= 1;
+            Hp = Mathf.Clamp(Hp, 0, maxHp);
+            for (int i = 0; i < maxHp; i++)
+                Heart[i].sprite = Back;
 
-        for (int i = 0; i < maxHp; i++)
-            if (Hp > i)
-            {
-                Heart[i].sprite = Front;
-            }
+            for (int i = 0; i < maxHp; i++)
+                if (Hp > i)
+                {
+                    Heart[i].sprite = Front;
+                }
+        }
     }
     void AttackTrue()
     {
@@ -162,7 +180,7 @@ public class Player : MonoBehaviour
     {
         ishit = true;
     }
-    
+
     void HitFalse()
     {
         ishit = false;
@@ -171,9 +189,9 @@ public class Player : MonoBehaviour
     IEnumerator blink()
     {
         int countTime = 0;
-        while(countTime < 10)
+        while (countTime < 10)
         {
-            if(countTime % 2 == 0)
+            if (countTime % 2 == 0)
             {
                 CharacterMaterial.GetComponent<SkinnedMeshRenderer>().material = mat[0];
             }
@@ -186,5 +204,5 @@ public class Player : MonoBehaviour
         }
         CharacterMaterial.GetComponent<SkinnedMeshRenderer>().material = mat[0];
         yield return null;
-    } 
+    }
 }

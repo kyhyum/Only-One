@@ -12,12 +12,15 @@ public class FollowCamera : MonoBehaviour
     private Vector2 prevPoint;
     private int camV;
     public Button btn;
-    public Camera cam;
+    public Camera cam1, cam2;
     public TMP_Text CameraText;
+    private bool isCam_fix = false;
 
     private void Start()
     {
         camV = 1;
+        cam1.enabled = true;
+        cam2.enabled = false;
     }
     void Update()
     {
@@ -25,17 +28,15 @@ public class FollowCamera : MonoBehaviour
         {
             if (camV == 1)
             {
-                Vector3 vec = new Vector3(cam.transform.position.x, cam.transform.position.y + 4, cam.transform.position.z - 4);
-                cam.transform.position = vec;
-                if (cam.transform.position == vec)
-                    camV = 2;
+                cam1.enabled = false;
+                cam2.enabled = true;
+                camV = 2;
             }
             else
             {
-                Vector3 vec = new Vector3(cam.transform.position.x, cam.transform.position.y - 4, cam.transform.position.z + 4);
-                cam.transform.position = vec;
-                if (cam.transform.position == vec)
-                    camV = 1;
+                cam1.enabled = true;
+                cam2.enabled = false;
+                camV = 1;
             }
             CameraText.text = camV.ToString();
         });
@@ -49,14 +50,32 @@ public class FollowCamera : MonoBehaviour
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch t = Input.GetTouch(i);
-            if (!EventSystem.current.IsPointerOverGameObject(i))
+            RaycastHit hit;
+            Ray touchray;
+            if (camV == 1)
+                touchray = cam1.ScreenPointToRay(Input.mousePosition);
+            else
+                touchray = cam2.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(touchray, out hit);
+
+            if (hit.collider.tag == "Monster")
+            {
+                Debug.Log("ÁøÀÔ");
+                isCam_fix = true;
+                StartCoroutine(enemy_FollowCam(hit, touchray));
+            }
+
+            else if (!EventSystem.current.IsPointerOverGameObject(i))
             {
                 if (Input.GetMouseButton(i) && (t.position.x > Screen.width / 2))
                 {
                     this.prevPoint = t.position - t.deltaPosition;
                     this.transform.RotateAround(this.player.transform.position, Vector3.up, (t.position.x - this.prevPoint.x) * 0.1f);
                     this.prevPoint = t.position;
+                    isCam_fix = false;
                 }
+
+
             }
         }
 
@@ -68,7 +87,33 @@ public class FollowCamera : MonoBehaviour
         this.transform.position = Vector3.Lerp(pos, trPlayer.position, 0.5f);
 
     }
-    
-    
-    
+
+    IEnumerator enemy_FollowCam(RaycastHit hit, Ray touchray)
+    {
+        while (isCam_fix)
+        {
+            Vector3 vec_sub = hit.collider.transform.position - player.transform.position;
+            if (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z) > 3)
+            {
+                Vector3 vec = new Vector3(0, 90 - (90 / (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z)) * Mathf.Abs(vec_sub.z)), 0);
+                if (vec_sub.x > 0 && vec_sub.z < 0)
+                    vec = new Vector3(0, 90 + (90 / (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z)) * Mathf.Abs(vec_sub.z)), 0);
+                else if (vec_sub.x < 0 && vec_sub.z > 0)
+                    vec.y *= -1;
+                else if (vec_sub.x < 0 && vec_sub.z < 0)
+                    vec = new Vector3(0, -(90 + (90 / (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z)) * Mathf.Abs(vec_sub.z))), 0);
+
+
+                Debug.Log(vec);
+                Debug.Log(hit.collider.transform.position);
+                this.transform.rotation = Quaternion.Euler(vec);
+                yield return new WaitForSeconds(0.0001f);
+            }
+            else
+                break;
+
+        }
+    }
+
+
 }
