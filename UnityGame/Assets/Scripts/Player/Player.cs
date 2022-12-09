@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
         if (Hp > 0)
         {
             Hp -= 1;
-            Hp = Mathf.Clamp(Hp, 0, maxHp);
+            Hp = Mathf.Clamp(Hp, 1, maxHp);
             for (int i = 0; i < maxHp; i++)
                 Heart[i].sprite = Back;
 

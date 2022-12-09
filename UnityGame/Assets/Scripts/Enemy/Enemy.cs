@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public BoxCollider meleeArea;
     public bool isChase;
     public bool isAttack;
+    public bool isHit;
     public GameObject player;
 
     Rigidbody rigid;
@@ -20,16 +21,18 @@ public class Enemy : MonoBehaviour
     Material mat;
     NavMeshAgent nav;
     Animator anim;
+    float asd;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+        asd = rigid.velocity.y;
         sphereCollider = GetComponent<SphereCollider>();
         mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
-        Invoke("ChaseStart", 10);
+        Invoke("ChaseStart", 2);
     }
 
     void ChaseStart() {
@@ -62,8 +65,8 @@ public class Enemy : MonoBehaviour
 
         switch (enemyType) {
             case Type.Slime:
-                targetRadius = 1.5f;
-                targetRange = 1f;
+                targetRadius = 0.8f;
+                targetRange = 1.2f;
                 break;
         }
 
@@ -71,41 +74,83 @@ public class Enemy : MonoBehaviour
              = Physics.SphereCastAll(transform.position, targetRadius,
               transform.forward, targetRange, LayerMask.GetMask("Player"));
 
-        if (rayHits.Length > 0 && !isAttack)
+        if (rayHits.Length > 0 && !isAttack && !isHit)
             StartCoroutine(Attack());
     }
 
     IEnumerator Attack() {
         isChase = false;
         isAttack = true;
+
+        anim.SetTrigger("attackReady");
+        yield return new WaitForSeconds(0.8f);
         anim.SetBool("isAttack", true);
+
         switch (enemyType)
         {
             case Type.Slime:
+                if (isHit) {
+                    anim.SetBool("isAttack", false);
+                    isAttack = false;
+                    break;
+                }
                 yield return new WaitForSeconds(0.3f);
                 meleeArea.enabled = true;
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
                 meleeArea.enabled = false;
+
+                anim.SetBool("isAttack", false);
+                // yield return new WaitForSeconds(2f);
+
                 break;
         }
 
+        // anim.SetBool("isWalk", true);
         isChase = true;
         isAttack = false;
-        anim.SetBool("isAttack", false);
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("sword"))
+    void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.tag == "sword" && !isHit)
         {
-            if (player.GetComponent<Player>().attacked)
-                Destroy(gameObject);
+            Vector3 reactVec = transform.position - collider.transform.position;
+            reactVec.y = asd;
+            Debug.Log(reactVec);
+            curHealth -= 1;
+
+            StartCoroutine(OnDamage(reactVec));
         }
     }
 
-    IEnumerator OnDamage() {
+    IEnumerator OnDamage(Vector3 reactVec) {
         // 몬스터가 데미지를 받는 계산 부분
-        yield return null;
+        // mat.color = Color.red;
+        isHit = true;
+        nav.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+
+        reactVec = reactVec.normalized;
+
+        rigid.AddForce(reactVec.normalized * 8, ForceMode.Impulse);
+        
+        if (curHealth > 0) {
+            mat.color = Color.white;
+            anim.SetTrigger("hit");
+
+            yield return new WaitForSeconds(1f);
+            isHit = false;
+            nav.enabled = true;
+
+        } else {
+            isChase = false;
+            nav.enabled = false;
+            anim.SetTrigger("doDie");
+            
+            Destroy(gameObject, 2);
+        }
+
+        
     }
    
 }
