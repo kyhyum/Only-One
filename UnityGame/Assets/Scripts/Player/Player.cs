@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     Rigidbody rigid;
     public GameObject CharacterMaterial;
     public bl_Joystick js;
-    public Button btn;
+    public Button attackbtn;
+    public Button rollingbtn;
     public float speed;
     private bool isDie;
     public bool attacked = false;
@@ -40,31 +41,27 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-
-        Die();
-        if (((Mathf.Abs(js.Horizontal)) > 0.01 || (Mathf.Abs(js.Vertical)) > 0.01) && !isDie && !ishit)
-        {
-            //Debug.Log(js.Horizontal);
-            //Debug.Log(js.Vertical);
-            Move();
-        }
-        else
-        {
-            //Debug.Log("끝");
-            animator.SetBool("IsMove", false);
-        }
-        //Debug.Log(js.Horizontal);
-        //Debug.Log(js.Vertical);
-        //공격방식 수정
-        btn.onClick.AddListener(() =>
+        attackbtn.onClick.AddListener(() =>
         {
             if (!isDie)
                 StartCoroutine(Attack());
         });
-        /*if(transform.position.y <= -1)
+        rollingbtn.onClick.AddListener(() =>
         {
-            gameObject.layer = 9;
-        }*/
+            if (!isDie)
+                StartCoroutine(Rolling());
+
+        });
+        Die();
+        if (((Mathf.Abs(js.Horizontal)) > 0.01 || (Mathf.Abs(js.Vertical)) > 0.01) && !isDie && !ishit)
+        {
+            Move();
+        }
+        else
+        {
+            animator.SetBool("IsMove", false);
+        }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -124,6 +121,15 @@ public class Player : MonoBehaviour
              //2타공격
                  animator.SetTrigger("isAttack2");
          }*/
+    }
+    IEnumerator Rolling()
+    {
+        animator.SetTrigger("isrolling");
+        this.gameObject.layer = 8;
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isrolling", false);
+        HitFalse();
+        OffDamaged();
     }
 
     public void Die()
