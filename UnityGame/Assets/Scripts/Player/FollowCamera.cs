@@ -58,16 +58,16 @@ public class FollowCamera : MonoBehaviour
                 touchray = cam2.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(touchray, out hit);
 
-            if (hit.collider.tag == "Monster")
+            if (!EventSystem.current.IsPointerOverGameObject(i))
             {
-                Debug.Log("진입");
-                isCam_fix = true;
-                StartCoroutine(enemy_FollowCam(hit, touchray));
-            }
+                if (hit.collider.tag == "click collider")
+                {
+                    Debug.Log("진입");
+                    isCam_fix = true;
+                    StartCoroutine(enemy_FollowCam(hit));
+                }
 
-            else if (!EventSystem.current.IsPointerOverGameObject(i))
-            {
-                if (Input.GetMouseButton(i) && (t.position.x > Screen.width / 2))
+                else if (Input.GetMouseButton(i) && (t.position.x > Screen.width / 2) && Mathf.Abs(t.deltaPosition.x) > 1)
                 {
                     this.prevPoint = t.position - t.deltaPosition;
                     this.transform.RotateAround(this.player.transform.position, Vector3.up, (t.position.x - this.prevPoint.x) * 0.1f);
@@ -88,7 +88,7 @@ public class FollowCamera : MonoBehaviour
 
     }
 
-    IEnumerator enemy_FollowCam(RaycastHit hit, Ray touchray)
+    IEnumerator enemy_FollowCam(RaycastHit hit)
     {
         while (isCam_fix)
         {
@@ -109,8 +109,6 @@ public class FollowCamera : MonoBehaviour
                 this.transform.rotation = Quaternion.Euler(vec);
                 yield return new WaitForSeconds(0.0001f);
             }
-            else
-                break;
 
         }
     }

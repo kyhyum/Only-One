@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.tag == "Lava")
         {
-            while (Hp > 0)
+            for (int i = 0; i < 5; i++)
                 hp_down();
         }
     }
@@ -162,16 +162,21 @@ public class Player : MonoBehaviour
         if (Hp > 0)
         {
             Hp -= 1;
-            Hp = Mathf.Clamp(Hp, 1, maxHp);
-            for (int i = 0; i < maxHp; i++)
-                Heart[i].sprite = Back;
-
-            for (int i = 0; i < maxHp; i++)
-                if (Hp > i)
-                {
-                    Heart[i].sprite = Front;
-                }
+            Hp = Mathf.Clamp(Hp, 0, maxHp);
+            hp_check();
         }
+    }
+
+    public void hp_check()
+    {
+        for (int i = 0; i < maxHp; i++)
+            Heart[i].sprite = Back;
+
+        for (int i = 0; i < maxHp; i++)
+            if (Hp > i)
+            {
+                Heart[i].sprite = Front;
+            }
     }
     void AttackTrue()
     {

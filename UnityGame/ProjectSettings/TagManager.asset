@@ -8,6 +8,8 @@ TagManager:
   - Monster Bullet
   - Floor
   - sword
+  - Lava
+  - click collider
   layers:
   - Default
   - TransparentFX

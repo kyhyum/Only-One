@@ -1177,6 +1177,11 @@ MonoBehaviour:
   cam1: {fileID: 963194227}
   cam2: {fileID: 1014632579}
   CameraText: {fileID: 214102987}
+--- !u!4 &666106387 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 417402636368509811, guid: 455d8711297b43a45a5b3f9e07f75fcc, type: 3}
+  m_PrefabInstance: {fileID: 249299073287285011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &694741881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,6 +1428,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7498174, y: 1.4, z: 1.9602908}
   m_Center: {x: 0.012656301, y: -1.08, z: 1.06}
+--- !u!1 &782628375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782628376}
+  - component: {fileID: 782628377}
+  m_Layer: 7
+  m_Name: click collider
+  m_TagString: click collider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &782628376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 666106387}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &782628377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0.013669491, y: 0.31641567, z: 0}
 --- !u!1 &838270549
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,7 +3320,7 @@ GameObject:
   - component: {fileID: 2055457550}
   m_Layer: 0
   m_Name: Lava
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
