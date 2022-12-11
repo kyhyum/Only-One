@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class FollowCamera : MonoBehaviour
 {
     public GameObject player;
+    private GameObject eyes;
     public Transform trPlayer;
     private Vector2 prevPoint;
     private int camV;
@@ -62,8 +63,9 @@ public class FollowCamera : MonoBehaviour
             {
                 if (hit.collider.tag == "click collider")
                 {
-                    Debug.Log("¡¯¿‘");
+                    Debug.Log("000");
                     isCam_fix = true;
+                    eyes = hit.transform.Find("eyes").gameObject;
                     StartCoroutine(enemy_FollowCam(hit));
                 }
 
@@ -72,6 +74,8 @@ public class FollowCamera : MonoBehaviour
                     this.prevPoint = t.position - t.deltaPosition;
                     this.transform.RotateAround(this.player.transform.position, Vector3.up, (t.position.x - this.prevPoint.x) * 0.1f);
                     this.prevPoint = t.position;
+                    if (isCam_fix)
+                        eyes.SetActive(false);
                     isCam_fix = false;
                 }
 
@@ -103,15 +107,17 @@ public class FollowCamera : MonoBehaviour
                 else if (vec_sub.x < 0 && vec_sub.z < 0)
                     vec = new Vector3(0, -(90 + (90 / (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z)) * Mathf.Abs(vec_sub.z))), 0);
 
-
                 Debug.Log(vec);
                 Debug.Log(hit.collider.transform.position);
                 this.transform.rotation = Quaternion.Euler(vec);
-                yield return new WaitForSeconds(0.0001f);
+                eyes.SetActive(true);
             }
-
+            else
+                eyes.SetActive(false);
+            yield return new WaitForSeconds(0.0001f);
         }
     }
-
-
 }
+
+
+
