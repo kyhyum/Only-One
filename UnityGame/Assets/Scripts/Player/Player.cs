@@ -65,9 +65,11 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if ((collision.gameObject.tag == "Monster") && !isDie && !ishit && gameObject.layer == 6)
+        if ((collision.gameObject.tag == "Monster" || collision.gameObject.tag == "Monster Bullet") && !isDie && !ishit && gameObject.layer == 6)
         {
             animator.SetTrigger("IsHit");
+            if (collision.gameObject.tag == "Monster Bullet")
+                Destroy(collision.gameObject);
             Vector3 reactVec = transform.position - collision.transform.position;
             hp_down();
             OnDamaged(reactVec);

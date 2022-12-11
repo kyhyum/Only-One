@@ -91,8 +91,8 @@ GameObject:
   - component: {fileID: 326684088102569649}
   - component: {fileID: 422128388083029509}
   - component: {fileID: 422128388083029507}
-  - component: {fileID: 422128388083029505}
   - component: {fileID: 326684088102569650}
+  - component: {fileID: 422128388083029505}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Monster
@@ -167,6 +167,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8272066, y: 0.6919, z: 1.3937333}
   m_Center: {x: 0.014203548, y: 0.5277934, z: 1.3373395}
+--- !u!114 &326684088102569650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421205330508191071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc324d9937cae4d4f95cda892af8288b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 0
+  target: {fileID: 0}
+  meleeArea: {fileID: 422128388083029507}
+  bullet: {fileID: 0}
+  maxHealth: 9
+  curHealth: 9
+  isChase: 0
+  isAttack: 0
+  isHit: 0
+  isDefence: 0
 --- !u!195 &422128388083029505
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -189,27 +211,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &326684088102569650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 421205330508191071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc324d9937cae4d4f95cda892af8288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 0
-  maxHealth: 9
-  curHealth: 9
-  target: {fileID: 0}
-  meleeArea: {fileID: 422128388083029507}
-  isChase: 0
-  isAttack: 0
-  isHit: 0
-  isDefence: 0
 --- !u!1 &422573200186190735
 GameObject:
   m_ObjectHideFlags: 0

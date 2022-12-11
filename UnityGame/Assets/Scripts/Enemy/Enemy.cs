@@ -5,12 +5,16 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public enum Type { Slime, Turtle };
+    public enum Type { Slime, Turtle, Lich };
     public Type enemyType;
-    public int maxHealth;
-    public int curHealth;
     public Transform target;
     public BoxCollider meleeArea;
+
+    public GameObject bullet;
+
+    public int maxHealth;
+    public int curHealth;
+    
     public bool isChase;
     public bool isAttack;
     public bool isHit;
@@ -30,7 +34,7 @@ public class Enemy : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
-        Invoke("ChaseStart", 2);
+        Invoke("ChaseStart", 5);
     }
 
     void ChaseStart()
@@ -52,8 +56,12 @@ public class Enemy : MonoBehaviour
     {
         if (isChase)
         {
-            rigid.velocity = Vector3.zero;
-            rigid.angularVelocity = Vector3.zero;
+            if (transform.position.y < 0) {
+                nav.enabled = false;
+            } else {
+                rigid.velocity = Vector3.zero;
+                rigid.angularVelocity = Vector3.zero;
+            }
         }
     }
 
@@ -74,9 +82,15 @@ public class Enemy : MonoBehaviour
                 targetRadius = 0.8f;
                 targetRange = 1.2f;
                 break;
+
             case Type.Turtle:
                 targetRadius = 0.8f;
                 targetRange = 1.5f;
+                break;
+
+            case Type.Lich:
+                targetRadius = 0.5f;
+                targetRange = 12f;
                 break;
         }
 
@@ -93,7 +107,8 @@ public class Enemy : MonoBehaviour
         isChase = false;
         isAttack = true;
 
-        anim.SetTrigger("attackReady");
+        if (meleeArea != null)
+            anim.SetTrigger("attackReady");
 
         switch (enemyType)
         {
@@ -153,9 +168,28 @@ public class Enemy : MonoBehaviour
                     anim.SetBool("isAttack", false);
                     break;
                 }
+
+            case Type.Lich:
+                yield return new WaitForSeconds(0.5f);
+                anim.SetBool("isAttack", true);
+
+                yield return new WaitForSeconds(0.5f);
+                GameObject instantBullet = Instantiate(bullet, transform.position - (Vector3.forward), transform.rotation);
+                Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
+                rigidBullet.velocity = transform.forward * 6;
+                Destroy(instantBullet, 10);
+
+                yield return new WaitForSeconds(0.5f);
+                anim.SetBool("isAttack", false);
+                anim.SetBool("isWalk", false);
+                yield return new WaitForSeconds(1.5f);
+                
+
+                break;
         }
 
         yield return new WaitForSeconds(0.5f);
+        anim.SetBool("isWalk", true);
         isChase = true;
         isAttack = false;
     }
@@ -188,7 +222,8 @@ public class Enemy : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
             isHit = false;
-            nav.enabled = true;
+            if (transform.position.y > 0)
+                nav.enabled = true;
 
         }
         else
