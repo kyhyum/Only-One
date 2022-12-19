@@ -7,10 +7,12 @@ public class Money : MonoBehaviour
 {
     TextMeshProUGUI moneyText;
     //public UserDataManager userdatamanager;
+    public ToastMessage toastmessage;
     void Start()
     {
-       // userdatamanager = GameObject.FindWithTag("SaveLoad").GetComponent<UserDataManager>();
-        moneyText = GetComponent<TextMeshProUGUI>();
+        toastmessage = GameObject.FindWithTag("Toast").GetComponent<ToastMessage>();
+         // userdatamanager = GameObject.FindWithTag("SaveLoad").GetComponent<UserDataManager>();
+         moneyText = GetComponent<TextMeshProUGUI>();
        // Money_set(userdatamanager.money);
     }
 
@@ -26,7 +28,14 @@ public class Money : MonoBehaviour
 
     public void Money_minus(int minus_num)
     {
-        moneyText.text = (Int32.Parse(moneyText.text) - minus_num).ToString();
+        if(Int32.Parse(moneyText.text) - minus_num < 0)
+        {
+            toastmessage.showMessage(0.3f);
+        }
+        else
+        {
+            moneyText.text = (Int32.Parse(moneyText.text) - minus_num).ToString();
+        }
     }
 
     /*public void Money_save()

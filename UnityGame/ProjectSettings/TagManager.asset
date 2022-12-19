@@ -12,6 +12,7 @@ TagManager:
   - click collider
   - Gem
   - SaveLoad
+  - Toast
   layers:
   - Default
   - TransparentFX
