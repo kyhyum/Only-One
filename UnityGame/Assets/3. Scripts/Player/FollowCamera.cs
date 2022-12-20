@@ -61,22 +61,25 @@ public class FollowCamera : MonoBehaviour
 
             if (!EventSystem.current.IsPointerOverGameObject(i))
             {
-                if (hit.collider.tag == "click collider")
+                if ((t.position.x > Screen.width / 3))
                 {
-                    Debug.Log("000");
-                    isCam_fix = true;
-                    eyes = hit.transform.Find("eyes").gameObject;
-                    StartCoroutine(enemy_FollowCam(hit));
-                }
+                    if (hit.collider.tag == "click collider")
+                    {
+                        Debug.Log("000");
+                        isCam_fix = true;
+                        eyes = hit.transform.Find("eyes").gameObject;
+                        StartCoroutine(enemy_FollowCam(hit));
+                    }
 
-                else if (Input.GetMouseButton(i) && (t.position.x > Screen.width / 2) && Mathf.Abs(t.deltaPosition.x) > 1)
-                {
-                    this.prevPoint = t.position - t.deltaPosition;
-                    this.transform.RotateAround(this.player.transform.position, Vector3.up, (t.position.x - this.prevPoint.x) * 0.1f);
-                    this.prevPoint = t.position;
-                    if (isCam_fix)
-                        eyes.SetActive(false);
-                    isCam_fix = false;
+                    else if (Input.GetMouseButton(i) && Mathf.Abs(t.deltaPosition.x) > 1)
+                    {
+                        this.prevPoint = t.position - t.deltaPosition;
+                        this.transform.RotateAround(this.player.transform.position, Vector3.up, (t.position.x - this.prevPoint.x) * 0.1f);
+                        this.prevPoint = t.position;
+                        if (isCam_fix)
+                            eyes.SetActive(false);
+                        isCam_fix = false;
+                    }
                 }
 
 
@@ -106,9 +109,6 @@ public class FollowCamera : MonoBehaviour
                     vec.y *= -1;
                 else if (vec_sub.x < 0 && vec_sub.z < 0)
                     vec = new Vector3(0, -(90 + (90 / (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z)) * Mathf.Abs(vec_sub.z))), 0);
-
-                Debug.Log(vec);
-                Debug.Log(hit.collider.transform.position);
                 this.transform.rotation = Quaternion.Euler(vec);
                 eyes.SetActive(true);
             }

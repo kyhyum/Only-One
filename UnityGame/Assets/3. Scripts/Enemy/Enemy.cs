@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        target = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
         Invoke("ChaseStart", 2);
     }
@@ -284,7 +285,8 @@ public class Enemy : MonoBehaviour
             nav.enabled = false;
             anim.SetTrigger("doDie");
 
-            Destroy(gameObject, 2);
+            //Destroy(gameObject, 2);
+            spwaner.Die(this);
         }
 
 
