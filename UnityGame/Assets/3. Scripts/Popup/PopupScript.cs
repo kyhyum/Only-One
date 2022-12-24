@@ -28,4 +28,11 @@ public class PopupScript : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
+
+    public void NextStage()
+    {
+        Time.timeScale = 1;
+        spwaner.stage++;
+        SceneManager.LoadScene(2);
+    }
 }

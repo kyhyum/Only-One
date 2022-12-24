@@ -182,12 +182,16 @@ public class Enemy : MonoBehaviour
                 anim.SetBool("isAttack", true);
 
                 yield return new WaitForSeconds(0.4f);
-                GameObject instantBullet = Instantiate(bullet, transform.position - (Vector3.forward), transform.rotation);
-                Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
-                rigidBullet.velocity = transform.forward * 6;
-                Destroy(instantBullet, 10);
 
-                yield return new WaitForSeconds(0.5f);
+                // 투사체
+                /* GameObject instantBullet = Instantiate(bullet, transform.position - (Vector3.forward), transform.rotation);
+                 Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
+                 rigidBullet.velocity = transform.forward * 6;*/
+                StartCoroutine(spwaner.Instance.lich_attack(this.gameObject));
+                 // 투사체 파괴
+                 //Destroy(instantBullet, 10);
+
+                 yield return new WaitForSeconds(0.5f);
                 anim.SetBool("isAttack", false);
                 anim.SetBool("isWalk", false);
                 yield return new WaitForSeconds(1.5f);
@@ -286,7 +290,8 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("doDie");
 
             //Destroy(gameObject, 2);
-            spwaner.Die(this);
+            yield return new WaitForSeconds(2f);
+            spwaner.Instance.Die(this, enemyType.ToString());
         }
 
 

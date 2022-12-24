@@ -65,7 +65,10 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("IsHit");
             if (collision.gameObject.tag == "Monster Bullet")
-                Destroy(collision.gameObject);
+            {
+                //Destroy(collision.gameObject);
+                spwaner.Instance.bullet_disable(collision.gameObject);
+            }
             Vector3 reactVec = transform.position - collision.transform.position;
             userhp.hp_down();
             OnDamaged(reactVec);
@@ -138,6 +141,7 @@ public class Player : MonoBehaviour
             rigid.velocity = Vector3.zero;
             animator.SetLayerWeight(1, 0);
             animator.SetBool("Die", true);
+            spwaner.Instance.stage_reset();
             //money.Money_save();
             Invoke("popup", 2);
         }
