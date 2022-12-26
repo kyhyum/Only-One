@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RandomDrop : MonoBehaviour
 {
-    public ObjectManager objectmanager;
-    public void dropitem(string type)
+   /* public void dropitem(string type)
     {
         int num = 0;
         switch (type)
@@ -43,6 +42,6 @@ public class RandomDrop : MonoBehaviour
             GameObject dropitem = objectmanager.makeObj("itemDiamond");
             dropitem.transform.position += this.transform.position;
         }
-    }
+    }*/
     
 }
