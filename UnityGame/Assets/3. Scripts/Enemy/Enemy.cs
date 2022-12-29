@@ -250,12 +250,43 @@ public class Enemy : MonoBehaviour
 
             StartCoroutine(OnDamage(reactVec));
         }
+        else if (collider.gameObject.tag == "Slash")
+        {
+            Vector3 reactVec = transform.position - collider.transform.position;
+            reactVec = reactVec.normalized;
+
+            StartCoroutine(OnStuned(reactVec*2));
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Lava")
             Destroy(gameObject);
+    }
+
+    public IEnumerator OnStuned(Vector3 reactVec)
+    {
+        // 몬스터가 데미지를 받는 계산 부분
+        isHit = true;
+        nav.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+
+        rigid.AddForce(reactVec * 10, ForceMode.Impulse);
+
+        anim.SetTrigger("hit");
+
+        yield return new WaitForSeconds(1f);
+        isHit = false;
+        if (transform.position.y < 0)
+        {
+            isChase = false;
+            nav.enabled = false;
+        }
+        else
+        {
+            nav.enabled = true;
+        }
     }
 
     public IEnumerator OnDamage(Vector3 reactVec)

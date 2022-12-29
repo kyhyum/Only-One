@@ -8,8 +8,8 @@ public class Active_Skill : MonoBehaviour
 
     public Set_SkillParticle set_SkillParticle;
 
-    //public BoxCollider FireWave_MeleeArea;
-    //public BoxCollider AirSlash_MeleeArea;
+    public BoxCollider FireWave_MeleeArea;
+    public BoxCollider AirSlash_MeleeArea;
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +21,17 @@ public class Active_Skill : MonoBehaviour
         if(i == 0)
         {
             set_SkillParticle.SetActive_Skill(i);
+            FireWave_MeleeArea.enabled = true;
             yield return new WaitForSeconds(7f);
-            /*FireWave_MeleeArea.enabled = true;
-            yield return new WaitForSeconds(7f);
-            FireWave_MeleeArea.enabled = false;*/
+            FireWave_MeleeArea.enabled = false;
         }
         else if(i == 1)
         {
             animator.SetTrigger("IsAttack");
             set_SkillParticle.SetActive_Skill(i);
+            AirSlash_MeleeArea.enabled = true;
             yield return new WaitForSeconds(0.5f);
-            /*AirSlash_MeleeArea.enabled = true;
-            yield return new WaitForSeconds(0.5f);
-            AirSlash_MeleeArea.enabled = false;*/
+            AirSlash_MeleeArea.enabled = false;
         }
         else 
         {

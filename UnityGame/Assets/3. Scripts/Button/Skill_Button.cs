@@ -25,11 +25,11 @@ public class Skill_Button : MonoBehaviour
         {
             case 0:
                 StartCoroutine(active_Skill.Skill(num));
-                StartCoroutine(CoolTime(2f, num));
+                StartCoroutine(CoolTime(12f, num));
                 break;
             case 1:
                 StartCoroutine(active_Skill.Skill(num));
-                StartCoroutine(CoolTime(2f, num));
+                StartCoroutine(CoolTime(5f, num));
                 break;
             case 2:
                 StartCoroutine(CoolTime(5f, num));
