@@ -117,6 +117,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         meleeArea.enabled = false;
+
         /* else
          {
              //2타공격

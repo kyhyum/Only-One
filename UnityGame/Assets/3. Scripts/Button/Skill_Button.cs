@@ -24,11 +24,12 @@ public class Skill_Button : MonoBehaviour
         switch(num)
         {
             case 0:
-                //active_Skill.Skill_Slash();
+                StartCoroutine(active_Skill.Skill(num));
                 StartCoroutine(CoolTime(2f, num));
                 break;
             case 1:
-                StartCoroutine(CoolTime(10f, num));
+                StartCoroutine(active_Skill.Skill(num));
+                StartCoroutine(CoolTime(2f, num));
                 break;
             case 2:
                 StartCoroutine(CoolTime(5f, num));

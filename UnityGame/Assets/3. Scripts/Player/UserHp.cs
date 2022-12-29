@@ -12,10 +12,13 @@ public class UserHp : MonoBehaviour
 
     void Start()
     {
-        maxHp = 5;
+        maxHp = (GameObject.Find("SL System").GetComponent<UserDataManager>().passiveskill[3] == 0) ? 5 : 6;
         Hp = maxHp;
         for (int i = 0; i < Hp; i++)
-            Heart[i].sprite = Front; 
+        {
+            Heart[i].gameObject.SetActive(true);
+            Heart[i].sprite = Front;
+        }
     }
 
     public void hp_down()
@@ -48,4 +51,3 @@ public class UserHp : MonoBehaviour
             }
     }
 }
-

@@ -12,6 +12,7 @@ public class spwaner : MonoBehaviour
     int monster_num;
     int[] monster = new int[3];
     int[] monster_queue_size = new int[3];
+    private int num = 0;
 
     // Monster prefebs
     public GameObject slime;
@@ -44,7 +45,7 @@ public class spwaner : MonoBehaviour
         slime_num = 0;
         turtle_num = 0;
         lich_num = 0;
-        
+
         //생성
         for (int i = 0; i < 10; i++)
         {
@@ -85,7 +86,7 @@ public class spwaner : MonoBehaviour
             case 3:
                 itemHeart_queue.Enqueue(add_object);
                 break;
-                //0~3 아이템
+            //0~3 아이템
             case 4:
                 slime_queue.Enqueue(add_object);
                 if (!reinsert)
@@ -160,6 +161,7 @@ public class spwaner : MonoBehaviour
         while (Monster_check())
         {
             Vector3 vec = new Vector3(0, 0, 0);
+            num++;
             GameObject monster_object = GetMonster();
             monster_object.transform.RotateAround(vec, Vector3.up, Random.Range(-180f, 180f));
             yield return new WaitForSeconds(10f);
@@ -172,7 +174,7 @@ public class spwaner : MonoBehaviour
         turtle_num = 0;
         lich_num = 0;
         //몬스터 개체수
-        monster_num = 2;
+        monster_num = 1;
         //몬스터 소환 확률
         if (stage < 5)
         {
@@ -280,12 +282,12 @@ public class spwaner : MonoBehaviour
         return false;
     }
 
-    
+
     public void Die(Enemy gameobject, string type)
     {
         Debug.Log(gameobject.gameObject);
         Vector3 vector = gameobject.gameObject.GetComponent<Transform>().position;
-        dropitem(vector,type);
+        dropitem(vector, type);
         if (type == "Slime")
         {
             gameobject.gameObject.SetActive(false);
@@ -314,7 +316,8 @@ public class spwaner : MonoBehaviour
     {
         if (slime_queue.Count == monster_queue_size[0] &&
             turtle_queue.Count == monster_queue_size[1] &&
-            lich_queue.Count == monster_queue_size[2])
+            lich_queue.Count == monster_queue_size[2] &&
+            num == monster_num)
         {
             yield return new WaitForSeconds(3f);
             Time.timeScale = 0;
@@ -339,8 +342,8 @@ public class spwaner : MonoBehaviour
         rigidBullet.velocity = lich.transform.forward * 6;
 
         //10초뒤 투사체 비활성화
-        yield return new WaitForSeconds(10f);
-        if (bullet.activeInHierarchy)
+        yield return new WaitForSeconds(3f);
+        if (bullet_object.activeInHierarchy)
         {
             bullet_disable(bullet_object);
         }
@@ -357,5 +360,4 @@ public class spwaner : MonoBehaviour
         stage = 1;
     }
 }
-
 

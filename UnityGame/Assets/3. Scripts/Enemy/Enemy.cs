@@ -258,7 +258,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
     }
 
-    IEnumerator OnDamage(Vector3 reactVec)
+    public IEnumerator OnDamage(Vector3 reactVec)
     {
         // 몬스터가 데미지를 받는 계산 부분
         isHit = true;

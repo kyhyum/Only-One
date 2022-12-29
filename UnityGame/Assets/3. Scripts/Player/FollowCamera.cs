@@ -11,7 +11,7 @@ public class FollowCamera : MonoBehaviour
     private GameObject eyes;
     public Transform trPlayer;
     private Vector2 prevPoint;
-    private int camV;
+    private static int camV = 1;
     public Button btn;
     public Camera cam1, cam2;
     public TMP_Text CameraText;
@@ -19,7 +19,6 @@ public class FollowCamera : MonoBehaviour
 
     private void Start()
     {
-        camV = 1;
         cam1.enabled = true;
         cam2.enabled = false;
     }
@@ -118,6 +117,3 @@ public class FollowCamera : MonoBehaviour
         }
     }
 }
-
-
-
