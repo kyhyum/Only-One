@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33000010259202392}
   - component: {fileID: 23000011097900018}
   - component: {fileID: 4974772506424319180}
+  - component: {fileID: -722068994037194725}
   m_Layer: 0
   m_Name: Hexgon
   m_TagString: Gem
@@ -98,3 +99,17 @@ CapsuleCollider:
   m_Height: 1.4742059
   m_Direction: 1
   m_Center: {x: -0.000012397765, y: -0.0075622816, z: -0.00000029802328}
+--- !u!114 &-722068994037194725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013356204050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2a74b7eff257947b6b1562073d0d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userhp: {fileID: 0}
+  money: {fileID: 0}

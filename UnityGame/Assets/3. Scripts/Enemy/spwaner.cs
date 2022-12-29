@@ -307,22 +307,19 @@ public class spwaner : MonoBehaviour
 
             Instance.InsertQueue(gameobject.gameObject, 6, true);
         }
-        stage_clear();
+        StartCoroutine(stage_clear());
     }
-    private void stage_clear()
+
+    public IEnumerator stage_clear()
     {
-        Debug.Log("슬라임" + slime_queue.Count);
-        Debug.Log("터틀" + turtle_queue.Count);
-        Debug.Log("리치 " + lich_queue.Count);
-        Debug.Log("슬라임 t" + monster_queue_size[0]);
-        Debug.Log("터틀 t" + monster_queue_size[1]);
-        Debug.Log("리치 t" + monster_queue_size[2]);
         if (slime_queue.Count == monster_queue_size[0] &&
             turtle_queue.Count == monster_queue_size[1] &&
             lich_queue.Count == monster_queue_size[2])
         {
+            yield return new WaitForSeconds(3f);
             Time.timeScale = 0;
             stage_popup.SetActive(true);
+
         }
 
     }

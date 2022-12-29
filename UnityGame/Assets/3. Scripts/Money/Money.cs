@@ -6,14 +6,14 @@ using TMPro;
 public class Money : MonoBehaviour
 {
     TextMeshProUGUI moneyText;
-    //public UserDataManager userdatamanager;
+    public UserDataManager userdatamanager;
     public ToastMessage toastmessage;
     void Start()
     {
         toastmessage = GameObject.FindWithTag("Toast").GetComponent<ToastMessage>();
-         // userdatamanager = GameObject.FindWithTag("SaveLoad").GetComponent<UserDataManager>();
+         userdatamanager = GameObject.FindWithTag("SaveLoad").GetComponent<UserDataManager>();
          moneyText = GetComponent<TextMeshProUGUI>();
-       // Money_set(userdatamanager.money);
+         Money_set(userdatamanager.money);
     }
 
     public void Money_plus(int plus_num)
@@ -38,9 +38,9 @@ public class Money : MonoBehaviour
         }
     }
 
-    /*public void Money_save()
+    public void Money_save()
     {
         userdatamanager.money = Int32.Parse(moneyText.text);
         userdatamanager.OverwriteData();
-    }*/
+    }
 }
