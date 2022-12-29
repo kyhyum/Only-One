@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public Transform target;
     public BoxCollider meleeArea;
 
+    public ParticleSystem Stuned;
+
     public GameObject bullet;
 
     public int maxHealth;
@@ -19,6 +21,8 @@ public class Enemy : MonoBehaviour
     public bool isAttack;
     public bool isHit;
     public bool isDefence = false;
+
+    GameObject Player;
 
     int dRand;
 
@@ -33,7 +37,9 @@ public class Enemy : MonoBehaviour
         mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        target = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        Player = GameObject.FindWithTag("Player");
+        target = Player.GetComponent<Transform>();
+        Stuned.Stop();
 
         Invoke("ChaseStart", 2);
     }
@@ -245,7 +251,8 @@ public class Enemy : MonoBehaviour
         {
             Vector3 reactVec = transform.position - collider.transform.position;
             if (!isDefence)
-                curHealth -= 1;
+                curHealth -= Player.GetComponent<Player>().damage;
+
             reactVec = reactVec.normalized;
 
             StartCoroutine(OnDamage(reactVec));
@@ -267,16 +274,18 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator OnStuned(Vector3 reactVec)
     {
-        // 몬스터가 데미지를 받는 계산 부분
         isHit = true;
         nav.enabled = false;
         yield return new WaitForSeconds(0.1f);
 
         rigid.AddForce(reactVec * 10, ForceMode.Impulse);
+        Stuned.Play();
 
         anim.SetTrigger("hit");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f); 
+        Stuned.Stop();
+
         isHit = false;
         if (transform.position.y < 0)
         {

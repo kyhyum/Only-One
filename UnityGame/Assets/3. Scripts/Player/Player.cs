@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     //public Money money;
 
     public float speed;
+
+    public float maxspeed;
+    public int damage = 1;
     private bool isDie;
     public bool attacked = false;
     public BoxCollider meleeArea;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        maxspeed = 1.05f;
         meleeArea.enabled = false;
         rd = CharacterMaterial.GetComponent<SkinnedMeshRenderer>();
         rigid = GetComponent<Rigidbody>();
@@ -37,6 +41,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(maxspeed);
         attackbtn.onClick.AddListener(() =>
         {
             if (!isDie)
@@ -89,7 +94,7 @@ public class Player : MonoBehaviour
         {
             animator.SetLayerWeight(1, 1);
             animator.SetBool("IsRun", true);
-            speed = 1f;
+            speed = maxspeed;
         }
         else
         {
