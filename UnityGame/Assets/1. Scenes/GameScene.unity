@@ -6615,9 +6615,10 @@ MonoBehaviour:
   maxspeed: 0
   damage: 1
   attacked: 0
+  ishit: 0
+  isShield: 0
   meleeArea: {fileID: 716818983}
   playerCamera: {fileID: 963194227}
-  ishit: 0
   userhp: {fileID: 1052197820}
 --- !u!65 &1052197819
 BoxCollider:
@@ -12921,7 +12922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: 1
   backgroundsound: 0
-  passiveskill: 00000000000000000000000001000000
+  passiveskill: 00000000000000000100000001000000
   activeskill: 01000000010000000100000001000000
   heart: 3
   money: 10
