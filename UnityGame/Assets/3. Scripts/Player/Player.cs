@@ -15,21 +15,26 @@ public class Player : MonoBehaviour
     //public Money money;
 
     public float speed;
-
     public float maxspeed;
     public int damage = 1;
-    private bool isDie;
+    private bool double_attack;
+
     public bool attacked = false;
+    public bool ishit = false;
+    private bool isDie;
+    public bool isShield;
+
     public BoxCollider meleeArea;
     Animator animator;
     public Camera playerCamera;
-    public bool ishit = false;
     public UserHp userhp;
     private SkinnedMeshRenderer rd;
     private Material[] mat;
 
     private void Start()
     {
+        double_attack = (GameObject.Find("SL System").GetComponent<UserDataManager>().passiveskill[2] == 1) ? true : false;
+        isShield = false;
         maxspeed = 1.05f;
         meleeArea.enabled = false;
         rd = CharacterMaterial.GetComponent<SkinnedMeshRenderer>();
@@ -41,7 +46,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(maxspeed);
         attackbtn.onClick.AddListener(() =>
         {
             if (!isDie)
@@ -68,15 +72,18 @@ public class Player : MonoBehaviour
     {
         if ((collision.gameObject.tag == "Monster" || collision.gameObject.tag == "Monster Bullet") && !isDie && !ishit && gameObject.layer == 6)
         {
-            animator.SetTrigger("IsHit");
+            if (!isShield)
+            {
+                animator.SetTrigger("IsHit");
+                Vector3 reactVec = transform.position - collision.transform.position;
+                userhp.hp_down();
+                OnDamaged(reactVec);
+            }
             if (collision.gameObject.tag == "Monster Bullet")
             {
                 //Destroy(collision.gameObject);
                 spwaner.Instance.bullet_disable(collision.gameObject);
             }
-            Vector3 reactVec = transform.position - collision.transform.position;
-            userhp.hp_down();
-            OnDamaged(reactVec);
         }
         if (collision.gameObject.tag == "Lava")
         {
@@ -115,7 +122,10 @@ public class Player : MonoBehaviour
     IEnumerator Attack()
     {
         animator.SetLayerWeight(1, 1);
-        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack01_SwordShield"))
+        if (double_attack)
+            animator.SetBool("IsAttack2", true);
+        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack01_SwordShield") &&
+            !animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack02_SwordShield"))
             animator.SetTrigger("IsAttack");
         yield return new WaitForSeconds(0.3f);
         meleeArea.enabled = true;
@@ -123,12 +133,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         meleeArea.enabled = false;
 
-        /* else
-         {
-             //2타공격
-                 animator.SetTrigger("isAttack2");
-         }*/
     }
+
     IEnumerator Rolling()
     {
         animator.SetTrigger("isrolling");

@@ -11,11 +11,13 @@ public class Active_Skill : MonoBehaviour
     public BoxCollider FireWave_MeleeArea;
     public BoxCollider AirSlash_MeleeArea;
 
+    public GameObject Shield;
     Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        Shield.SetActive(false);
         player = GetComponent<Player>();
         animator = GetComponent<Animator>();
     }
@@ -36,10 +38,18 @@ public class Active_Skill : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             AirSlash_MeleeArea.enabled = false;
         }
+        else if (i == 2)
+        {
+            Shield.SetActive(true);
+            player.isShield = true; 
+            yield return new WaitForSeconds(2f);
+            Shield.SetActive(false);
+            player.isShield = false;
+        }
         else if(i == 3) 
         {
             player.damage = 2;
-            player.maxspeed = 1.1f;
+            player.maxspeed = 1.15f;
             set_SkillParticle.SetActive_Skill(i);
             yield return new WaitForSeconds(8f);
             player.damage = 1;
