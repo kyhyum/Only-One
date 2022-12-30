@@ -8,6 +8,10 @@ public class Money : MonoBehaviour
     TextMeshProUGUI moneyText;
     public UserDataManager userdatamanager;
     public ToastMessage toastmessage;
+    public Store_Purchase store_Purchase;
+
+    int idx;
+
     void Start()
     {
         toastmessage = GameObject.FindWithTag("Toast").GetComponent<ToastMessage>();
@@ -16,14 +20,21 @@ public class Money : MonoBehaviour
          Money_set(userdatamanager.money);
     }
 
-    public void Money_plus(int plus_num)
+    public void Set_Idx(int num)
     {
-        moneyText.text = (Int32.Parse(moneyText.text) + plus_num).ToString();
+        idx = num;
     }
 
     public void Money_set(int Money_num)
     {
         moneyText.text = Money_num.ToString();
+    }
+
+    public void Money_plus(int plus_num)
+    {
+        int money = Int32.Parse(moneyText.text) + plus_num;
+        moneyText.text = money.ToString();
+        Money_set(money);
     }
 
     public void Money_minus(int minus_num)
@@ -34,7 +45,10 @@ public class Money : MonoBehaviour
         }
         else
         {
-            moneyText.text = (Int32.Parse(moneyText.text) - minus_num).ToString();
+            int money = Int32.Parse(moneyText.text) - minus_num;
+            moneyText.text = money.ToString();
+            Money_set(money);
+            store_Purchase.Purchase(idx);
         }
     }
 

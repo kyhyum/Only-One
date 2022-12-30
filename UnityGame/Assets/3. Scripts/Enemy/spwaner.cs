@@ -174,7 +174,7 @@ public class spwaner : MonoBehaviour
         turtle_num = 0;
         lich_num = 0;
         //몬스터 개체수
-        monster_num = 1;
+        monster_num = 2;
         //몬스터 소환 확률
         if (stage < 5)
         {

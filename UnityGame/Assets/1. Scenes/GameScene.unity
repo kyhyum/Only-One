@@ -1094,6 +1094,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Money_save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &199221327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1653,7 @@ GameObject:
   - component: {fileID: 205260021}
   - component: {fileID: 205260020}
   - component: {fileID: 205260019}
+  - component: {fileID: 205260024}
   m_Layer: 5
   m_Name: Upgrade_Pop_up
   m_TagString: Untagged
@@ -1735,6 +1748,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2100, y: 1020}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &205260024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205260018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2e11bdfefb7b44cb4ebaadf1679f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userdatamanager: {fileID: 0}
 --- !u!1 &214102985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,12 +2057,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 922718216}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2164,12 +2214,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1424945716}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2297,12 +2371,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1424945716}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2749,6 +2847,18 @@ MonoBehaviour:
       - m_Target: {fileID: 16350927}
         m_TargetAssemblyTypeName: PopupScript, Assembly-CSharp
         m_MethodName: Mainmenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Money_save
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3420,6 +3530,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Money_save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 664853470}
+        m_TargetAssemblyTypeName: Skill_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &530331364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3714,12 +3848,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1424945716}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4128,7 +4286,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: ba387bb5840477b41a4e0f8e70f27870, type: 3}
   - {fileID: 2800000, guid: da0ff889a9250cb4693743c31f63e4f6, type: 3}
   - {fileID: 2800000, guid: cf1a6569be0d1a84f8ed43972cce1110, type: 3}
-  userdatamanager: {fileID: 2042228283}
+  userdatamanager: {fileID: 0}
 --- !u!114 &664853471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4819,12 +4977,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1424945716}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5717,6 +5899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 922718215}
+  - component: {fileID: 922718216}
   m_Layer: 5
   m_Name: ActiveSkill_Object
   m_TagString: Untagged
@@ -5749,6 +5932,30 @@ RectTransform:
   m_AnchoredPosition: {x: -750, y: 216}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &922718216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922718214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95360d6aee71974c922c6425c99cf1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_Images:
+  - {fileID: 1608372559}
+  - {fileID: 1447013150}
+  - {fileID: 1701984543}
+  - {fileID: 1555755629}
+  buttons:
+  - {fileID: 1608372558}
+  - {fileID: 1447013148}
+  - {fileID: 1701984541}
+  - {fileID: 1555755628}
+  image: {fileID: 2800000, guid: 6b532a69d1f025f4a8cb0d1fa18b1e06, type: 3}
+  userdatamanager: {fileID: 0}
 --- !u!1 &930842858
 GameObject:
   m_ObjectHideFlags: 0
@@ -6611,6 +6818,7 @@ MonoBehaviour:
   attackbtn: {fileID: 694741883}
   rollingbtn: {fileID: 1719030499}
   popupscript: {fileID: 16350927}
+  money: {fileID: 0}
   speed: 5
   maxspeed: 0
   damage: 1
@@ -7263,12 +7471,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 922718216}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7584,12 +7816,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 922718216}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7790,7 +8046,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 205260019}
         m_TargetAssemblyTypeName: PopupScript, Assembly-CSharp
-        m_MethodName: PopupUnActive
+        m_MethodName: PopupUnActive_time
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8993,6 +9249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1424945715}
+  - component: {fileID: 1424945716}
   m_Layer: 5
   m_Name: PassiveSkill_Object
   m_TagString: Untagged
@@ -9025,6 +9282,30 @@ RectTransform:
   m_AnchoredPosition: {x: -750, y: -111}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1424945716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424945714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95360d6aee71974c922c6425c99cf1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_Images:
+  - {fileID: 1638300885}
+  - {fileID: 838756848}
+  - {fileID: 57763843}
+  - {fileID: 1824376588}
+  buttons:
+  - {fileID: 1638300884}
+  - {fileID: 838756847}
+  - {fileID: 57763842}
+  - {fileID: 1824376587}
+  image: {fileID: 2800000, guid: 6b532a69d1f025f4a8cb0d1fa18b1e06, type: 3}
+  userdatamanager: {fileID: 0}
 --- !u!1 &1435003781
 GameObject:
   m_ObjectHideFlags: 0
@@ -9677,12 +9958,36 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1911848181}
         m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Set_Idx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
         m_MethodName: Money_minus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 922718216}
+        m_TargetAssemblyTypeName: Cart_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11171,6 +11476,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 664853470}
+        m_TargetAssemblyTypeName: Skill_Image, Assembly-CSharp
+        m_MethodName: refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1701984539
 GameObject:
   m_ObjectHideFlags: 0
@@ -12517,6 +12834,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userdatamanager: {fileID: 0}
   toastmessage: {fileID: 1486237458}
+  store_Purchase: {fileID: 205260024}
+--- !u!1 &1913274781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1913274784}
+  - component: {fileID: 1913274782}
+  m_Layer: 0
+  m_Name: SL System
+  m_TagString: SaveLoad
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1913274782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913274781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842ece5ce28556c4489bbcd9d79d2222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 1
+  backgroundsound: 0
+  passiveskill: 00000000000000000100000001000000
+  activeskill: 01000000010000000100000001000000
+  heart: 3
+  money: 50000
+--- !u!4 &1913274784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913274781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1914884296
 GameObject:
   m_ObjectHideFlags: 0
@@ -12642,6 +13010,30 @@ MonoBehaviour:
       - m_Target: {fileID: 204380585}
         m_TargetAssemblyTypeName: PopupScript, Assembly-CSharp
         m_MethodName: Retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Money_save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 664853470}
+        m_TargetAssemblyTypeName: Skill_Image, Assembly-CSharp
+        m_MethodName: refresh
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12891,56 +13283,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031336047}
   m_CullTransparentMesh: 1
---- !u!1 &2042228282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2042228284}
-  - component: {fileID: 2042228283}
-  m_Layer: 0
-  m_Name: SL System
-  m_TagString: SaveLoad
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2042228283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042228282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 842ece5ce28556c4489bbcd9d79d2222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound: 1
-  backgroundsound: 0
-  passiveskill: 00000000000000000100000001000000
-  activeskill: 01000000010000000100000001000000
-  heart: 3
-  money: 10
---- !u!4 &2042228284
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042228282}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055457549
 GameObject:
   m_ObjectHideFlags: 0
@@ -14292,6 +14634,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Money_save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6619132995455986460
 GameObject:
   m_ObjectHideFlags: 0
@@ -14387,6 +14741,18 @@ MonoBehaviour:
       - m_Target: {fileID: 204380585}
         m_TargetAssemblyTypeName: PopupScript, Assembly-CSharp
         m_MethodName: Mainmenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1911848181}
+        m_TargetAssemblyTypeName: Money, Assembly-CSharp
+        m_MethodName: Money_save
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

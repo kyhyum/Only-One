@@ -26,4 +26,22 @@ public class Skill_Image : MonoBehaviour
             }
         }
     }
+    public void refresh()
+    {
+        int[] activeskill = userdatamanager.activeskill;
+        for (int i = 0; i < 4; i++)
+        {
+            if (activeskill[i] > 0)
+            {
+                Button_Images[i].texture = image[i];
+                Button_Images[i].color = Color.white;
+                buttons[i].interactable = true;
+            }
+            else
+            {
+                buttons[i].interactable = false;
+            }
+        }
+    }
+    
 }

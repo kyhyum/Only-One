@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public Button rollingbtn;
 
     public PopupScript popupscript;
-    //public Money money;
+    public Money money;
 
     public float speed;
     public float maxspeed;
@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        double_attack = (GameObject.Find("SL System").GetComponent<UserDataManager>().passiveskill[2] == 1) ? true : false;
+        UserDataManager SaveLoad = GameObject.FindWithTag("SaveLoad").GetComponent<UserDataManager>();
+        money = GameObject.FindWithTag("Money").GetComponent<Money>();
+        double_attack = (SaveLoad.passiveskill[2] == 1) ? true : false;
         isShield = false;
         maxspeed = 1.05f;
         meleeArea.enabled = false;
@@ -123,13 +125,18 @@ public class Player : MonoBehaviour
     {
         animator.SetLayerWeight(1, 1);
         if (double_attack)
-            animator.SetBool("IsAttack2", true);
+        {
+            animator.SetBool("IsAttack2", true); 
+            meleeArea.enabled = true;
+            yield return new WaitForSeconds(0.2f);
+            meleeArea.enabled = false;
+
+
+        }
         if (!animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack01_SwordShield") &&
             !animator.GetCurrentAnimatorStateInfo(1).IsName("NormalAttack02_SwordShield"))
             animator.SetTrigger("IsAttack");
-        yield return new WaitForSeconds(0.3f);
         meleeArea.enabled = true;
-
         yield return new WaitForSeconds(0.5f);
         meleeArea.enabled = false;
 
@@ -154,7 +161,7 @@ public class Player : MonoBehaviour
             animator.SetLayerWeight(1, 0);
             animator.SetBool("Die", true);
             spwaner.Instance.stage_reset();
-            //money.Money_save();
+            money.Money_save();
             Invoke("popup", 2);
         }
     }

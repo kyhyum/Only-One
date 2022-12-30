@@ -305,13 +305,13 @@ public class Enemy : MonoBehaviour
         nav.enabled = false;
         yield return new WaitForSeconds(0.1f);
 
-        rigid.AddForce(reactVec * (isDefence ? 4 : 8), ForceMode.Impulse);
+        rigid.AddForce(reactVec * (isDefence ? 2 : 4), ForceMode.Impulse);
 
         if (curHealth > 0)
         {
             anim.SetTrigger("hit");
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.3f);
             isHit = false;
             if (transform.position.y < 0)
             {
@@ -328,9 +328,7 @@ public class Enemy : MonoBehaviour
             isChase = false;
             nav.enabled = false;
             anim.SetTrigger("doDie");
-
-            //Destroy(gameObject, 2);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             spwaner.Instance.Die(this, enemyType.ToString());
         }
 

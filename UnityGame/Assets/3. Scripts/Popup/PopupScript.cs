@@ -18,6 +18,10 @@ public class PopupScript : MonoBehaviour
         Time.timeScale = 1;
         gameobject.SetActive(false);
     }
+    public void PopupUnActive_time()
+    {
+        gameobject.SetActive(false);
+    }
     public void Retry()
     {
         Time.timeScale = 1;
