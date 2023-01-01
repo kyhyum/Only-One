@@ -113,3 +113,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userhp: {fileID: 0}
   money: {fileID: 0}
+  player: {fileID: 1556040939566342, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}

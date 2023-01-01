@@ -16,6 +16,7 @@ public class FollowCamera : MonoBehaviour
     public Camera cam1, cam2;
     public TMP_Text CameraText;
     private bool isCam_fix = false;
+    private bool re_touch = false;
 
     private void Start()
     {
@@ -56,17 +57,17 @@ public class FollowCamera : MonoBehaviour
                 touchray = cam1.ScreenPointToRay(Input.mousePosition);
             else
                 touchray = cam2.ScreenPointToRay(Input.mousePosition);
-            Physics.Raycast(touchray, out hit);
 
             if (!EventSystem.current.IsPointerOverGameObject(i))
             {
+                Physics.Raycast(touchray, out hit);
                 if ((t.position.x > Screen.width / 3))
                 {
+                    isCam_fix = false;
                     if (hit.collider.tag == "click collider")
                     {
-                        Debug.Log("000");
-                        isCam_fix = true;
                         eyes = hit.transform.Find("eyes").gameObject;
+                        isCam_fix = true;
                         StartCoroutine(enemy_FollowCam(hit));
                     }
 
@@ -80,8 +81,6 @@ public class FollowCamera : MonoBehaviour
                         isCam_fix = false;
                     }
                 }
-
-
             }
         }
 
@@ -96,10 +95,11 @@ public class FollowCamera : MonoBehaviour
 
     IEnumerator enemy_FollowCam(RaycastHit hit)
     {
-        while (isCam_fix)
-        {
+        while (isCam_fix && hit.collider.gameObject.activeInHierarchy)
+        { 
             Vector3 vec_sub = hit.collider.transform.position - player.transform.position;
-            if (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z) > 3)
+            float distance = Vector3.Distance(hit.collider.transform.position, player.transform.position);
+            if (distance > 3)
             {
                 Vector3 vec = new Vector3(0, 90 - (90 / (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z)) * Mathf.Abs(vec_sub.z)), 0);
                 if (vec_sub.x > 0 && vec_sub.z < 0)
@@ -111,9 +111,9 @@ public class FollowCamera : MonoBehaviour
                 this.transform.rotation = Quaternion.Euler(vec);
                 eyes.SetActive(true);
             }
-            else
-                eyes.SetActive(false);
             yield return new WaitForSeconds(0.0001f);
         }
+        eyes.SetActive(false);
+        re_touch = false;
     }
 }
