@@ -327,7 +327,7 @@ public class spwaner : MonoBehaviour
 
     }
 
-    public IEnumerator lich_attack(GameObject lich)
+    public void lich_attack(GameObject lich)
     {
         if (lich_bullet_queue.Count == 0)
         {
@@ -342,6 +342,11 @@ public class spwaner : MonoBehaviour
         rigidBullet.velocity = lich.transform.forward * 6;
 
         //10초뒤 투사체 비활성화
+        StartCoroutine(attack_disalbe(bullet_object));
+    }
+
+    private IEnumerator attack_disalbe(GameObject bullet_object)
+    {
         yield return new WaitForSeconds(3f);
         if (bullet_object.activeInHierarchy)
         {

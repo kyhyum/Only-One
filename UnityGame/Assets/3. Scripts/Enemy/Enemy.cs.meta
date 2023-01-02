@@ -3,7 +3,13 @@ guid: fc324d9937cae4d4f95cda892af8288b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DamageText: {fileID: 7904584738519655936, guid: cc2815d98dd3c144688c57d07245d4cc, type: 3}
+  - textPos: {instanceID: 0}
+  - target: {instanceID: 0}
+  - meleeArea: {instanceID: 0}
+  - Stuned: {instanceID: 0}
+  - bullet: {instanceID: 0}
   executionOrder: 200
   icon: {instanceID: 0}
   userData: 

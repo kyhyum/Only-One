@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    //데미지 텍스트 -----
+    public GameObject DamageText;
+    public Transform textPos;
+    //-------------------
     public enum Type { Slime, Turtle, Lich, Grunt };
     public Type enemyType;
     public Transform target;
@@ -40,6 +44,8 @@ public class Enemy : MonoBehaviour
         Player = GameObject.FindWithTag("Player");
         target = Player.GetComponent<Transform>();
         Stuned.Stop();
+
+        textPos = transform.Find("damage_textpos").transform;
 
         Invoke("ChaseStart", 2);
     }
@@ -193,7 +199,7 @@ public class Enemy : MonoBehaviour
                 /* GameObject instantBullet = Instantiate(bullet, transform.position - (Vector3.forward), transform.rotation);
                  Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
                  rigidBullet.velocity = transform.forward * 6;*/
-                StartCoroutine(spwaner.Instance.lich_attack(this.gameObject));
+                spwaner.Instance.lich_attack(this.gameObject);
                  // 투사체 파괴
                  //Destroy(instantBullet, 10);
 
@@ -251,8 +257,12 @@ public class Enemy : MonoBehaviour
         {
             Vector3 reactVec = transform.position - collider.transform.position;
             if (!isDefence)
+            {
                 curHealth -= Player.GetComponent<Player>().damage;
-
+                GameObject dmgtext = Instantiate(DamageText);
+                dmgtext.transform.position = textPos.position;
+                dmgtext.GetComponent<damage_text>().damage = Random.Range(10,44);
+            }
             reactVec = reactVec.normalized;
 
             StartCoroutine(OnDamage(reactVec));

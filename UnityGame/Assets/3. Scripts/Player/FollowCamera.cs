@@ -16,7 +16,7 @@ public class FollowCamera : MonoBehaviour
     public Camera cam1, cam2;
     public TMP_Text CameraText;
     private bool isCam_fix = false;
-    private bool re_touch = false;
+    private RaycastHit hit_object;
 
     private void Start()
     {
@@ -51,8 +51,8 @@ public class FollowCamera : MonoBehaviour
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch t = Input.GetTouch(i);
-            RaycastHit hit;
             Ray touchray;
+            RaycastHit hit;
             if (camV == 1)
                 touchray = cam1.ScreenPointToRay(Input.mousePosition);
             else
@@ -63,12 +63,14 @@ public class FollowCamera : MonoBehaviour
                 Physics.Raycast(touchray, out hit);
                 if ((t.position.x > Screen.width / 3))
                 {
-                    isCam_fix = false;
                     if (hit.collider.tag == "click collider")
                     {
+                        if (isCam_fix)
+                            eyes.SetActive(false);
                         eyes = hit.transform.Find("eyes").gameObject;
                         isCam_fix = true;
-                        StartCoroutine(enemy_FollowCam(hit));
+                        hit_object = hit;
+                        StartCoroutine(enemy_FollowCam());
                     }
 
                     else if (Input.GetMouseButton(i) && Mathf.Abs(t.deltaPosition.x) > 1)
@@ -93,12 +95,12 @@ public class FollowCamera : MonoBehaviour
 
     }
 
-    IEnumerator enemy_FollowCam(RaycastHit hit)
+    IEnumerator enemy_FollowCam()
     {
-        while (isCam_fix && hit.collider.gameObject.activeInHierarchy)
+        while (isCam_fix && hit_object.collider.gameObject.activeInHierarchy)
         { 
-            Vector3 vec_sub = hit.collider.transform.position - player.transform.position;
-            float distance = Vector3.Distance(hit.collider.transform.position, player.transform.position);
+            Vector3 vec_sub = hit_object.collider.transform.position - player.transform.position;
+            float distance = Vector3.Distance(hit_object.collider.transform.position, player.transform.position);
             if (distance > 3)
             {
                 Vector3 vec = new Vector3(0, 90 - (90 / (Mathf.Abs(vec_sub.x) + Mathf.Abs(vec_sub.z)) * Mathf.Abs(vec_sub.z)), 0);
@@ -111,9 +113,13 @@ public class FollowCamera : MonoBehaviour
                 this.transform.rotation = Quaternion.Euler(vec);
                 eyes.SetActive(true);
             }
+            else
+            {
+                eyes.SetActive(false);
+                isCam_fix = false;
+                break;
+            }
             yield return new WaitForSeconds(0.0001f);
         }
-        eyes.SetActive(false);
-        re_touch = false;
     }
 }

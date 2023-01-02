@@ -118,6 +118,7 @@ Transform:
   - {fileID: 4444410783181241384}
   - {fileID: 7408060773658887841}
   - {fileID: 4534708367739478791}
+  - {fileID: 1111196357018294790}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,6 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc324d9937cae4d4f95cda892af8288b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageText: {fileID: 7904584738519655936, guid: cc2815d98dd3c144688c57d07245d4cc, type: 3}
+  textPos: {fileID: 0}
   enemyType: 0
   target: {fileID: 0}
   meleeArea: {fileID: 422128388083029507}
@@ -641,6 +644,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7114358651768742221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1111196357018294790}
+  m_Layer: 7
+  m_Name: damage_textpos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1111196357018294790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114358651768742221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.46, y: 1.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 417402636368509811}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9151090638846992138
 GameObject:
   m_ObjectHideFlags: 0
