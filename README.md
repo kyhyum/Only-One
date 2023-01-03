@@ -1,2 +1,2 @@
-# UnityGame1
+# OnlyOne
 study unity
