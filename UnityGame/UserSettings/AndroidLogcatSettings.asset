@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R3CR703N9FA",
         "name": "com.DefaultCompany.Myproject2",
-        "processId": 25972,
+        "processId": 23371,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,43 +11,25 @@
         {
             "deviceId": "R3CR703N9FA",
             "name": "com.DefaultCompany.Myproject2",
-            "processId": 20029,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CR703N9FA",
-            "name": "com.DefaultCompany.Myproject2",
-            "processId": 20565,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CR703N9FA",
-            "name": "com.DefaultCompany.Myproject2",
-            "processId": 23666,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CR703N9FA",
-            "name": "com.DefaultCompany.Myproject2",
-            "processId": 25224,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CR703N9FA",
-            "name": "com.DefaultCompany.Myproject2",
-            "processId": 28119,
+            "processId": 17675,
             "exited": false
         },
         {
             "deviceId": "R3CR703N9FA",
             "name": "com.DefaultCompany.Myproject2",
-            "processId": 21735,
+            "processId": 20614,
             "exited": false
         },
         {
             "deviceId": "R3CR703N9FA",
             "name": "com.DefaultCompany.Myproject2",
-            "processId": 25972,
+            "processId": 21774,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CR703N9FA",
+            "name": "com.DefaultCompany.Myproject2",
+            "processId": 23371,
             "exited": false
         }
     ],

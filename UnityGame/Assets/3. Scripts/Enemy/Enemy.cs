@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public GameObject DamageText;
     public Transform textPos;
     //-------------------
-    public enum Type { Slime, Turtle, Lich, Grunt };
+    public enum Type { Slime, Turtle, Lich, Grunt, Gollem };
     public Type enemyType;
     public Transform target;
     public BoxCollider meleeArea;
@@ -25,15 +25,17 @@ public class Enemy : MonoBehaviour
     public bool isAttack;
     public bool isHit;
     public bool isDefence = false;
+    public bool isDead;
 
     GameObject Player;
 
     int dRand;
 
-    Rigidbody rigid;
-    Material mat;
-    NavMeshAgent nav;
-    Animator anim;
+    public Rigidbody rigid;
+    public Material mat;
+    public NavMeshAgent nav;
+    public Animator anim;
+
 
     void Awake()
     {
@@ -58,6 +60,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (isDead)
+            StopAllCoroutines();
         if (nav.enabled)
         {
             nav.SetDestination(target.position);
@@ -108,6 +112,10 @@ public class Enemy : MonoBehaviour
                 targetRange = 6f;
                 break;
 
+            case Type.Gollem:
+                targetRadius = 0.7f;
+                targetRange = 2.5f;
+                break;
 
         }
 
@@ -119,7 +127,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Attack());
     }
 
-    IEnumerator Attack()
+    public IEnumerator Attack()
     {
         isChase = false;
         isAttack = true;
@@ -203,14 +211,14 @@ public class Enemy : MonoBehaviour
                  // 투사체 파괴
                  //Destroy(instantBullet, 10);
 
-                 yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.5f);
                 anim.SetBool("isAttack", false);
                 anim.SetBool("isWalk", false);
                 yield return new WaitForSeconds(1.5f);
 
                 break;
 
-            case Type Grunt:
+            case Type.Grunt:
                 anim.SetBool("isRun", true);
                 rigid.AddForce(transform.forward * 8, ForceMode.Impulse);
 
@@ -243,6 +251,30 @@ public class Enemy : MonoBehaviour
 
                 yield return new WaitForSeconds(2f);
 
+                break;
+
+            case Type.Gollem:
+                yield return new WaitForSeconds(0.8f);
+                anim.SetBool("isAttack", true);
+
+                if (isHit)
+                {
+                    anim.SetBool("isAttack", false);
+                    isAttack = false;
+                    break;
+                }
+
+                yield return new WaitForSeconds(0.3f);
+                meleeArea.enabled = true;
+
+                yield return new WaitForSeconds(0.2f);
+                meleeArea.enabled = false;
+
+                anim.SetBool("isAttack", false);
+                anim.SetBool("isWalk", false);
+                yield return new WaitForSeconds(0.5f);
+
+                break;
                 break;
         }
 
